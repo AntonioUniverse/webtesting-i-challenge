@@ -14,29 +14,28 @@ function succeed(item) {
   return { ...item };
 }
 
-function fail(item) {
-  let enhancement = item.enhancement
-  let durability = item.durability
-  // const failLess = durability-=5
-  // const failGreat = durability-=10
-  const leveldown = enhancement-=1
-  if(enhancement < 15){
-    const failLess= durability-=5
-    return{...item, durability:failLess}
 
-  }
+  function fail(item) {
+    item = {
+      ...item,
+        enhancement: item.enhancement,
+        durability: item.durability
+    }
+    if(item.enhancement < 15){
+      item.durability -= 5;
+      }
+    
+      else{
+      item.durability -=10;
+    }
+    
+    if(item.enhancement > 16){
+      item.enhancement --;
+    }
   
-  if(enhancement >= 16) {
-    const failGreat = durability-=10
-    return{ ...item, durability:failGreat, enhancement:leveldown}
-  } 
- 
-   
-   
+    return { ...item };
+  }
 
-
-  return { ...item };
-}
 
 function repair(item) {
   const durability = item.durability
